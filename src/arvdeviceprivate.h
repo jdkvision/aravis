@@ -31,8 +31,6 @@
 
 G_BEGIN_DECLS
 
-void 		arv_device_emit_control_lost_signal 	(ArvDevice *device);
-void		arv_device_take_init_error		(ArvDevice *device, GError *error);
 
 G_END_DECLS
 

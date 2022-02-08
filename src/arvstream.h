@@ -90,6 +90,12 @@ ARV_API double		arv_stream_get_info_double_by_name	(ArvStream *stream, const cha
 ARV_API void		arv_stream_set_emit_signals		(ArvStream *stream, gboolean emit_signals);
 ARV_API gboolean	arv_stream_get_emit_signals		(ArvStream *stream);
 
+ARV_API ArvBuffer * arv_stream_pop_input_buffer      (ArvStream *stream);
+ARV_API void     arv_stream_push_output_buffer    (ArvStream *stream, ArvBuffer *buffer);
+ARV_API void     arv_stream_take_init_error    (ArvStream *device, GError *error);
+
+ARV_API void            arv_stream_declare_info                 (ArvStream *stream, const char *name, GType type, gpointer data);
+
 G_END_DECLS
 
 #endif

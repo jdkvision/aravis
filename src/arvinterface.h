@@ -36,6 +36,16 @@ G_BEGIN_DECLS
 #define ARV_TYPE_INTERFACE             (arv_interface_get_type ())
 ARV_API G_DECLARE_DERIVABLE_TYPE (ArvInterface, arv_interface, ARV, INTERFACE, GObject)
 
+typedef struct {
+   char *device;
+   char *physical;
+   char *address;
+   char *vendor;
+   char *manufacturer_info;
+   char *model;
+   char *serial_nbr;
+} ArvInterfaceDeviceIds;
+
 struct _ArvInterfaceClass {
 	GObjectClass parent_class;
 
@@ -57,6 +67,18 @@ ARV_API const char *	arv_interface_get_device_serial_nbr	        (ArvInterface *
 ARV_API const char *	arv_interface_get_device_protocol	        (ArvInterface *interface, unsigned int index);
 ARV_API ArvDevice *	arv_interface_open_device		        (ArvInterface *interface, const char *device_id,
                                                                          GError **error);
+
+typedef struct {
+   const char *interface_id;
+   gboolean is_available;
+   ArvInterface *    (*get_interface_instance)  (void);
+   void     (*destroy_interface_instance)    (void);
+} ArvInterfaceInfos;
+
+//plugin-loader will look for entry point named "aravis_extension_entry".
+// It is expected to have this function signature:
+// ArvInterfaceInfos *aravis_extension_entry();
+
 
 G_END_DECLS
 

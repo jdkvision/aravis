@@ -89,6 +89,42 @@ typedef enum {
 #define ARV_TYPE_BUFFER             (arv_buffer_get_type ())
 ARV_API G_DECLARE_FINAL_TYPE (ArvBuffer, arv_buffer, ARV, BUFFER, GObject)
 
+typedef struct {
+   size_t size;
+   gboolean is_preallocated;
+   unsigned char *data;
+
+   void *user_data;
+   GDestroyNotify user_data_destroy_func;
+
+   ArvBufferStatus status;
+
+   ArvBufferPayloadType payload_type;
+
+   guint32 chunk_endianness;
+
+   guint64 frame_id;
+   guint64 timestamp_ns;
+   guint64 system_timestamp_ns;
+
+   guint32 x_offset;
+   guint32 y_offset;
+   guint32 width;
+   guint32 height;
+
+   ArvPixelFormat pixel_format;
+} ArvBufferPrivate;
+
+struct _ArvBuffer {
+   GObject  object;
+
+   ArvBufferPrivate *priv;
+};
+
+struct _ArvBufferClass {
+   GObjectClass parent_class;
+};
+
 typedef void (*ArvFrameCallback)	(ArvBuffer *buffer);
 
 ARV_API ArvBuffer *		arv_buffer_new_allocate		(size_t size);

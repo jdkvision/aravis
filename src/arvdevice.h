@@ -137,6 +137,9 @@ ARV_API gboolean	arv_device_set_features_from_string	(ArvDevice *device, const c
 ARV_API void		arv_device_set_register_cache_policy	(ArvDevice *device, ArvRegisterCachePolicy policy);
 ARV_API void		arv_device_set_range_check_policy	(ArvDevice *device, ArvRangeCheckPolicy policy);
 
+ARV_API void     arv_device_emit_control_lost_signal    (ArvDevice *device);
+ARV_API void     arv_device_take_init_error    (ArvDevice *device, GError *error);
+
 G_END_DECLS
 
 #endif

@@ -28,41 +28,7 @@
 
 G_BEGIN_DECLS
 
-typedef struct {
-	size_t size;
-	gboolean is_preallocated;
-	unsigned char *data;
 
-	void *user_data;
-	GDestroyNotify user_data_destroy_func;
-
-	ArvBufferStatus status;
-
-	ArvBufferPayloadType payload_type;
-
-	guint32 chunk_endianness;
-
-	guint64 frame_id;
-	guint64 timestamp_ns;
-	guint64 system_timestamp_ns;
-
-	guint32 x_offset;
-	guint32 y_offset;
-	guint32 width;
-	guint32 height;
-
-	ArvPixelFormat pixel_format;
-} ArvBufferPrivate;
-
-struct _ArvBuffer {
-	GObject	object;
-
-	ArvBufferPrivate *priv;
-};
-
-struct _ArvBufferClass {
-	GObjectClass parent_class;
-};
 
 gboolean	arv_buffer_payload_type_has_chunks 	(ArvBufferPayloadType payload_type);
 gboolean	arv_buffer_payload_type_has_aoi 	(ArvBufferPayloadType payload_type);
